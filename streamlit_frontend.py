@@ -5,7 +5,10 @@ from langchain_core.messages import HumanMessage
 # st.session_state -> dict -> 
 CONFIG = {'configurable': {'thread_id': 'thread-1'}}
 
-if 'message_history' not in st.session_state:
+"""If message_history does not already exist in Streamlit’s session state, 
+then create it as an empty list"""
+
+if 'message_history' not in st.session_state:  
     st.session_state['message_history'] = []
 
 # loading the conversation history
@@ -31,4 +34,5 @@ if user_input:
     # first add the message to message_history
     st.session_state['message_history'].append({'role': 'assistant', 'content': ai_message})
     with st.chat_message('assistant'):
+
         st.text(ai_message)
